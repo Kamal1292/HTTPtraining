@@ -1,0 +1,2 @@
+rootProject.name='HTTPtraining'
+include ':app'
