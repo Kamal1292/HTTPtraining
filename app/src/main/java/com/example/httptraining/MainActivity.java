@@ -19,6 +19,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -33,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     private AdapterUser adapterUser;
     private OkHttpClient client;
     private Request request;
+    private String jsonString;
 
 
     @Override
@@ -41,11 +43,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         usersRecyclerView = findViewById(R.id.recycler_view_users);
 
-
         get();
+        Constans.LIST_RESPONSE = parseJson(jsonString);
         initRecyclerView();
         searchUsers();
-
     }
 
     private void get(){
@@ -62,10 +63,9 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                Log.d(TAG, "onResponse: " + response.body().string());
-                String jsonString = response.body().string();
-                Log.d(TAG, "onResponse: STRING########## " + jsonString);
-                Constans.LIST_RESPONSE = parseJson(jsonString);
+                jsonString = Objects.requireNonNull(response.body()).toString();
+                //Log.d(TAG, "onResponse: STRING########## " + jsonString);
+
             }
         });
     }
@@ -78,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
             for (int a = 0; a < array.length(); a++) {
                 JSONObject joUser = array.getJSONObject(a);
                 int userId = joUser.getInt(Constans.KEY_USER_ID);
+
                 String userName = joUser.getString(Constans.KEY_USER_NAME);
                 String userNickName = joUser.getString(Constans.KEY_USER_NICK);
                 String emailAddress = joUser.getString(Constans.KEY_EMAIL);
@@ -105,6 +106,12 @@ public class MainActivity extends AppCompatActivity {
         return userList;
     }
 
+    private void searchUsers() {
+        List<User> users = Constans.LIST_RESPONSE;
+
+        adapterUser.setItems(users);
+    }
+
     private void initRecyclerView() {
         usersRecyclerView = findViewById(R.id.recycler_view_users);
         usersRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
@@ -119,10 +126,5 @@ public class MainActivity extends AppCompatActivity {
         };
         adapterUser = new AdapterUser(onUserClickListener);
         usersRecyclerView.setAdapter(adapterUser);
-    }
-
-    private void searchUsers() {
-        List<User> users = Constans.LIST_RESPONSE;
-        adapterUser.setItems(users);
     }
 }

@@ -25,7 +25,6 @@ public class Constans {
 
     public static class URL {
         private static final String HOST = "https://jsonplaceholder.typicode.com/";
-
         public static final String GET_USERS = HOST + "users";
     }
 }

@@ -35,7 +35,7 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.UserViewHolder
         holder.bind(user);
     }
 
-    public void setItems(Collection<User> users) {
+    public void setItems(List<User> users) {
         userList.addAll(users);
         notifyDataSetChanged();
     }
