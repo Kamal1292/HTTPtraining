@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <Toolbar
+        android:id="@+id/toolbar"
+        style="@style/Toolbar"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/user_name"
+            style="@style/TextView.Primary.Header"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="name"/>
+
+        <TextView
+            android:id="@+id/user_nick"
+            style="@style/TextView.Secondary"
+            android:layout_below="@id/user_name"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="nickname"/>
+
+        <TextView
+            android:id="@+id/user_email"
+            style="@style/TextView.Primary"
+            android:layout_below="@id/user_nick"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="email"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/user_address_text_view"
+            style="@style/TextView.Primary.Header"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="Address:"/>
+
+        <TextView
+            android:id="@+id/user_street_text_view"
+            style="@style/TextView.Primary"
+            android:layout_below="@id/user_address_text_view"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="street - "/>
+
+        <TextView
+            android:id="@+id/user_street"
+            style="@style/TextView.Primary"
+            android:layout_below="@id/user_address_text_view"
+            android:layout_toEndOf="@id/user_street_text_view"
+            android:layout_marginTop="@dimen/fab_margin"/>
+
+        <TextView
+            android:id="@+id/user_suite_text_view"
+            style="@style/TextView.Primary"
+            android:layout_below="@id/user_street_text_view"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="suite - "/>
+
+        <TextView
+            android:id="@+id/user_suite"
+            style="@style/TextView.Primary"
+            android:layout_below="@id/user_street_text_view"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:layout_toEndOf="@id/user_suite_text_view"/>
+
+        <TextView
+            android:id="@+id/user_city_text_view"
+            style="@style/TextView.Primary"
+            android:layout_below="@id/user_suite_text_view"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="city - "/>
+
+        <TextView
+            android:id="@+id/user_city"
+            style="@style/TextView.Primary"
+            android:layout_below="@id/user_suite_text_view"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:layout_toEndOf="@id/user_city_text_view"/>
+
+        <TextView
+            android:id="@+id/user_zipcode_text_view"
+            style="@style/TextView.Primary"
+            android:layout_below="@id/user_city_text_view"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="zipcode - "/>
+
+        <TextView
+            android:id="@+id/user_zipcode"
+            style="@style/TextView.Primary"
+            android:layout_below="@id/user_city_text_view"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:layout_toEndOf="@+id/user_zipcode_text_view"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="8dp">
+
+        <TextView
+            android:id="@+id/user_phone_text_view"
+            style="@style/TextView.Primary"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="phone - "/>
+
+        <TextView
+            android:id="@+id/user_phone"
+            style="@style/TextView.Primary"
+            android:layout_toEndOf="@id/user_phone_text_view"
+            android:layout_marginTop="@dimen/fab_margin"/>
+
+        <TextView
+            android:id="@+id/user_website_text_view"
+            style="@style/TextView.Primary"
+            android:layout_below="@id/user_phone_text_view"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="website - "/>
+
+        <TextView
+            android:id="@+id/user_website"
+            style="@style/TextView.Primary"
+            android:layout_below="@id/user_phone_text_view"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:layout_toEndOf="@id/user_website_text_view"/>
+
+        <TextView
+            android:id="@+id/user_company_text_view"
+            style="@style/TextView.Primary.Header"
+            android:layout_below="@id/user_website_text_view"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="Company:"/>
+
+        <TextView
+            android:id="@+id/company_name"
+            style="@style/TextView.Primary"
+            android:layout_below="@id/user_company_text_view"
+            android:layout_marginTop="@dimen/fab_margin"/>
+
+        <TextView
+            android:id="@+id/catchPhrase"
+            style="@style/TextView.Primary"
+            android:layout_below="@id/company_name"
+            android:layout_marginTop="@dimen/fab_margin"/>
+
+        <TextView
+            android:id="@+id/user_bs_text_view"
+            style="@style/TextView.Primary"
+            android:layout_below="@id/catchPhrase"
+            android:layout_marginTop="@dimen/fab_margin"
+            android:text="BS - "/>
+
+        <TextView
+            android:id="@+id/user_bs"
+            style="@style/TextView.Primary"
+            android:layout_below="@id/catchPhrase"
+            android:layout_toEndOf="@id/user_bs_text_view"
+            android:layout_marginTop="@dimen/fab_margin"/>
+
+    </RelativeLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_view_action"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" />
+
+</LinearLayout>
