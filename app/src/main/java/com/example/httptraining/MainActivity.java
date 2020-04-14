@@ -36,17 +36,33 @@ public class MainActivity extends AppCompatActivity {
     private Request request;
     private String jsonString;
 
+    private AdapterUser.OnUserClickListener onUserClickListener;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         usersRecyclerView = findViewById(R.id.recycler_view_users);
+        initRecyclerView();
 
         get();
-        Constans.LIST_RESPONSE = parseJson(jsonString);
-        initRecyclerView();
-        searchUsers();
+    }
+
+    private void initRecyclerView() {
+        usersRecyclerView = findViewById(R.id.recycler_view_users);
+        usersRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
+
+         onUserClickListener = new AdapterUser.OnUserClickListener() {
+            @Override
+            public void onUserClick(User user) {
+                Intent intent = new Intent(MainActivity.this, UserInfoActivity.class);
+                intent.putExtra(UserInfoActivity.USER_ID, user.getId());
+                startActivity(intent);
+            }
+        };
+        adapterUser = new AdapterUser(onUserClickListener);
+        usersRecyclerView.setAdapter(adapterUser);
     }
 
     private void get(){
@@ -63,11 +79,23 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
-                jsonString = Objects.requireNonNull(response.body()).toString();
+                jsonString = response.body().string();
                 //Log.d(TAG, "onResponse: STRING########## " + jsonString);
-
+                playForTime();
             }
+
+
         });
+
+    }
+
+    private void playForTime() {
+
+        if (jsonString != null && !jsonString.isEmpty()) {
+            Constans.LIST_RESPONSE = parseJson(jsonString);
+
+            searchUsers();
+        }
     }
 
     private List<User> parseJson(String response) {
@@ -78,8 +106,9 @@ public class MainActivity extends AppCompatActivity {
             for (int a = 0; a < array.length(); a++) {
                 JSONObject joUser = array.getJSONObject(a);
                 int userId = joUser.getInt(Constans.KEY_USER_ID);
-
+                Log.d(TAG, "parseJson:  ID " + userId );
                 String userName = joUser.getString(Constans.KEY_USER_NAME);
+                Log.d(TAG, "parseJson: NAME " + userName);
                 String userNickName = joUser.getString(Constans.KEY_USER_NICK);
                 String emailAddress = joUser.getString(Constans.KEY_EMAIL);
                 JSONObject joAddress = joUser.getJSONObject(Constans.KEY_ADDRESS);
@@ -108,23 +137,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void searchUsers() {
         List<User> users = Constans.LIST_RESPONSE;
+        if (users!=null && !users.isEmpty()){
+            adapterUser.setItems(users);
+        }
 
-        adapterUser.setItems(users);
-    }
-
-    private void initRecyclerView() {
-        usersRecyclerView = findViewById(R.id.recycler_view_users);
-        usersRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
-
-        AdapterUser.OnUserClickListener onUserClickListener = new AdapterUser.OnUserClickListener() {
-            @Override
-            public void onUserClick(User user) {
-                Intent intent = new Intent(MainActivity.this, UserInfoActivity.class);
-                intent.putExtra(UserInfoActivity.USER_ID, user.getId());
-                startActivity(intent);
-            }
-        };
-        adapterUser = new AdapterUser(onUserClickListener);
-        usersRecyclerView.setAdapter(adapterUser);
     }
 }
