@@ -36,15 +36,13 @@ public class MainActivity extends AppCompatActivity {
     private Request request;
     private String jsonString;
 
-    private AdapterUser.OnUserClickListener onUserClickListener;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         usersRecyclerView = findViewById(R.id.recycler_view_users);
-        initRecyclerView();
 
+        initRecyclerView();
         get();
     }
 
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         usersRecyclerView = findViewById(R.id.recycler_view_users);
         usersRecyclerView.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
-         onUserClickListener = new AdapterUser.OnUserClickListener() {
+        AdapterUser.OnUserClickListener onUserClickListener = new AdapterUser.OnUserClickListener() {
             @Override
             public void onUserClick(User user) {
                 Intent intent = new Intent(MainActivity.this, UserInfoActivity.class);
@@ -64,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         usersRecyclerView.setAdapter(adapterUser);
     }
 
-    private void get(){
+    private void get() {
         client = new OkHttpClient();
         request = new Request.Builder()
                 .url(Constans.URL.GET_USERS)
@@ -73,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                Log.i(TAG, "onFailure: " + e.getMessage());
+               // Log.i(TAG, "onFailure: " + e.getMessage());
             }
 
             @Override
@@ -86,17 +84,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 });
             }
-
-
         });
-
     }
 
     private void playForTime() {
-
         if (jsonString != null && !jsonString.isEmpty()) {
             Constans.LIST_RESPONSE = parseJson(jsonString);
-
             searchUsers();
         }
     }
@@ -105,13 +98,13 @@ public class MainActivity extends AppCompatActivity {
         List<User> userList = new ArrayList<>();
         try {
             JSONArray array = new JSONArray(response);
-            Log.d(TAG, "parseJson: "  + array);
+            //Log.d(TAG, "parseJson: " + array);
             for (int a = 0; a < array.length(); a++) {
                 JSONObject joUser = array.getJSONObject(a);
-                int userId = joUser.getInt(Constans.KEY_USER_ID);
-                Log.d(TAG, "parseJson:  ID " + userId );
+                String userId = joUser.getString(Constans.KEY_USER_ID);
+                //Log.d(TAG, "parseJson:  ID " + userId);
                 String userName = joUser.getString(Constans.KEY_USER_NAME);
-                Log.d(TAG, "parseJson: NAME " + userName);
+               // Log.d(TAG, "parseJson: NAME " + userName);
                 String userNickName = joUser.getString(Constans.KEY_USER_NICK);
                 String emailAddress = joUser.getString(Constans.KEY_EMAIL);
                 JSONObject joAddress = joUser.getJSONObject(Constans.KEY_ADDRESS);
@@ -131,8 +124,7 @@ public class MainActivity extends AppCompatActivity {
                         catchPhrase, bs);
                 userList.add(user);
             }
-
-        }catch (JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return userList;
@@ -140,9 +132,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void searchUsers() {
         List<User> users = Constans.LIST_RESPONSE;
-        if (users!=null && !users.isEmpty()){
+        if (users != null && !users.isEmpty()) {
             adapterUser.setItems(users);
         }
-
     }
 }

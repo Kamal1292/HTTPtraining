@@ -1,5 +1,6 @@
 package com.example.httptraining.Adapters;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +18,8 @@ import java.util.List;
 public class AdapterUser extends RecyclerView.Adapter<AdapterUser.UserViewHolder>  {
     private List<User> userList = new ArrayList<>();
     private OnUserClickListener onUserClickListener;
+    private final String TAG = this.getClass().getSimpleName();
+
 
     public AdapterUser(OnUserClickListener onUserClickListener) {
         this.onUserClickListener = onUserClickListener;
@@ -35,7 +38,7 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.UserViewHolder
         holder.bind(user);
     }
 
-    public void setItems(List<User> users) {
+    public void setItems(Collection<User> users) {
         userList.addAll(users);
         notifyDataSetChanged();
     }
@@ -71,8 +74,14 @@ public class AdapterUser extends RecyclerView.Adapter<AdapterUser.UserViewHolder
         }
 
         public void bind(User user) {
-            nameTextView.setText(user.getName());
-            nickTextView.setText(user.getNickname());
+            Log.d(TAG, "bind: Name " + user.getName());
+            String name = user.getName();
+            Log.d(TAG, "bind: name user " + name);
+            nameTextView.setText(name);
+            Log.d(TAG, "bind: NICKNAME " + user.getNickname());
+            String nick = user.getNickname();
+            Log.d(TAG, "bind: nickname user " + nick);
+            nickTextView.setText(nick);
         }
     }
 

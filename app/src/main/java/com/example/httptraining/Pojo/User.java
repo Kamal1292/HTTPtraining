@@ -2,7 +2,7 @@ package com.example.httptraining.Pojo;
 
 
 public class User {
-    private int id;
+    private String id;
     private String name;
     private String nickname;
     private String email;
@@ -16,7 +16,7 @@ public class User {
     private String catchPhrase;
     private String bs;
 
-    public User(int id,
+    public User(String id,
                 String name,
                 String nickname,
                 String email,
@@ -45,7 +45,7 @@ public class User {
         this.bs = bs;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
