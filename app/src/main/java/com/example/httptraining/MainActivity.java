@@ -38,7 +38,6 @@ public class MainActivity extends AppCompatActivity {
 
     private AdapterUser.OnUserClickListener onUserClickListener;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,7 +80,11 @@ public class MainActivity extends AppCompatActivity {
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 jsonString = response.body().string();
                 //Log.d(TAG, "onResponse: STRING########## " + jsonString);
-                playForTime();
+                runOnUiThread(new Runnable() {
+                    public void run() {
+                        playForTime();
+                    }
+                });
             }
 
 
