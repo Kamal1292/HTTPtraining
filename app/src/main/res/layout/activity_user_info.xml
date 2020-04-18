@@ -170,7 +170,7 @@
     </RelativeLayout>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view_action"
+        android:id="@+id/recycler_view_posts"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical" />
