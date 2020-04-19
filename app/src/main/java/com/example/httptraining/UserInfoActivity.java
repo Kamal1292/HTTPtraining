@@ -2,6 +2,8 @@ package com.example.httptraining;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -28,7 +30,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-public class UserInfoActivity extends AppCompatActivity {
+public class UserInfoActivity extends AppCompatActivity implements View.OnClickListener {
 
     private final String TAG = this.getClass().getSimpleName();
 
@@ -52,6 +54,7 @@ public class UserInfoActivity extends AppCompatActivity {
     private TextView txtCompanyName;
     private TextView txtCatchPhrase;
     private TextView txtBS;
+    private Button btnAlbums;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -69,6 +72,8 @@ public class UserInfoActivity extends AppCompatActivity {
         txtCompanyName = findViewById(R.id.company_name);
         txtCatchPhrase = findViewById(R.id.catchPhrase);
         txtBS = findViewById(R.id.user_bs);
+        btnAlbums = findViewById(R.id.btn_albums);
+        btnAlbums.setOnClickListener(this);
 
         initRecyclerView();
         getExtraFromIntent();
@@ -194,5 +199,22 @@ public class UserInfoActivity extends AppCompatActivity {
         if (posts != null && !posts.isEmpty()) {
             adapterPost.setItems(posts);
         }
+    }
+
+    @Override
+    public void onClick(View v) {
+        int vId = v.getId();
+        switch (vId){
+            case R.id.btn_albums:
+                goToAlbumsActivity();
+                break;
+        }
+    }
+
+    private void goToAlbumsActivity() {
+
+        Intent intent = new Intent(UserInfoActivity.this, AlbumsActivity.class);
+        intent.putExtra(AlbumsActivity.USER_ID, getUserId);
+        startActivity(intent);
     }
 }

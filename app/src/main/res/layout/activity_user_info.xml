@@ -18,6 +18,14 @@
             android:layout_marginTop="@dimen/fab_margin"
             android:text="name"/>
 
+        <Button
+            android:id="@+id/btn_albums"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:text="Albums"
+            android:textStyle="bold|normal"/>
+
         <TextView
             android:id="@+id/user_nick"
             style="@style/TextView.Secondary"
