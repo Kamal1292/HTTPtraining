@@ -53,9 +53,6 @@ public class CommentsActivity extends AppCompatActivity {
         recyclerViewComm = findViewById(R.id.recycler_view_comments);
 
         txtTitlePost = findViewById(R.id.txt_title_post2);
-        txtNameComment = findViewById(R.id.txt_name_comment);
-        txtEmailCom = findViewById(R.id.txt_commentator_email);
-        txtBodyCom =findViewById(R.id.txt_comment_body);
 
         initRecyclerView();
         getExtraFromIntent();
@@ -80,7 +77,7 @@ public class CommentsActivity extends AppCompatActivity {
     private void getExtraFromIntent() {
         getPostId = getIntent().getStringExtra(POST_ID);
         getPostTitle = getIntent().getStringExtra(POST_TITLE);
-       // txtTitlePost.setText(getPostTitle);
+        txtTitlePost.setText(getPostTitle);
     }
 
     private void initComment() {
@@ -94,7 +91,7 @@ public class CommentsActivity extends AppCompatActivity {
             String postId = post.getPostID();
             if (postId.equalsIgnoreCase(getPost)){
                 String titlePost = post.getTitle();
-//                txtTitlePost.setText(titlePost);
+                txtTitlePost.setText(titlePost);
             }
         }
         return posts;
@@ -159,7 +156,6 @@ public class CommentsActivity extends AppCompatActivity {
         List<Comment> comments = Constans.LIST_RESPONSE_COMMENTS;
         if (comments != null && !comments.isEmpty()) {
             adapterComment.setItems(comments);
-            txtTitlePost.setText(getPostTitle);
         }
     }
 }
