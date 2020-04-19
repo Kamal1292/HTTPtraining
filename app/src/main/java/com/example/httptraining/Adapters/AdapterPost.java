@@ -66,7 +66,7 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.PostViewHolder
                 @Override
                 public void onClick(View v) {
                     Post post = postList.get(getLayoutPosition());
-                    onPostClickListener.onUserClick(post);
+                    onPostClickListener.onPostClick(post);
                 }
             });
         }
@@ -79,6 +79,6 @@ public class AdapterPost extends RecyclerView.Adapter<AdapterPost.PostViewHolder
     }
 
     public interface OnPostClickListener{
-        void onUserClick(Post post);
+        void onPostClick(Post post);
     }
 }

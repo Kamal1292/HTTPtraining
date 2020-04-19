@@ -72,7 +72,7 @@ public class UserInfoActivity extends AppCompatActivity {
 
         initRecyclerView();
         getExtraFromIntent();
-        initUser();
+        initPost();
         get();
     }
 
@@ -82,9 +82,10 @@ public class UserInfoActivity extends AppCompatActivity {
 
         AdapterPost.OnPostClickListener onPostClickListener = new AdapterPost.OnPostClickListener() {
             @Override
-            public void onUserClick(Post post) {
+            public void onPostClick(Post post) {
                 Intent intent = new Intent(UserInfoActivity.this, CommentsActivity.class);
                 intent.putExtra(CommentsActivity.POST_ID, post.getPostID());
+                intent.putExtra(CommentsActivity.POST_TITLE, post.getTitle());
                 startActivity(intent);
             }
         };
@@ -95,7 +96,7 @@ public class UserInfoActivity extends AppCompatActivity {
     private void getExtraFromIntent() {
         getUserId = getIntent().getStringExtra(USER_ID);
     }
-    private void initUser() {
+    private void initPost() {
         List<User> users = findByUser(getUserId);
     }
 
@@ -181,9 +182,7 @@ public class UserInfoActivity extends AppCompatActivity {
                     Post post = new Post(userID, postID, postTitle, postBody);
                     postList.add(post);
                 }
-
             }
-
         }catch (JSONException je){
             je.getStackTrace();
         }
