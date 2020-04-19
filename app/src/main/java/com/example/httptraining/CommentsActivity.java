@@ -80,21 +80,21 @@ public class CommentsActivity extends AppCompatActivity {
     private void getExtraFromIntent() {
         getPostId = getIntent().getStringExtra(POST_ID);
         getPostTitle = getIntent().getStringExtra(POST_TITLE);
-        txtTitlePost.setText(getPostTitle);
+       // txtTitlePost.setText(getPostTitle);
     }
 
     private void initComment() {
         List<Post> posts = findByPost(getPostId);
     }
 
-    private List<Post> findByPost(String getPostId) {
+    private List<Post> findByPost(String getPost) {
         List<Post> posts = Constans.LIST_RESPONSE_POSTS;
         for (int i = 0; i < posts.size(); i++) {
             Post post = posts.get(i);
             String postId = post.getPostID();
-            if (postId.equalsIgnoreCase(getPostId)){
+            if (postId.equalsIgnoreCase(getPost)){
                 String titlePost = post.getTitle();
-                txtTitlePost.setText(titlePost);
+//                txtTitlePost.setText(titlePost);
             }
         }
         return posts;
@@ -159,6 +159,7 @@ public class CommentsActivity extends AppCompatActivity {
         List<Comment> comments = Constans.LIST_RESPONSE_COMMENTS;
         if (comments != null && !comments.isEmpty()) {
             adapterComment.setItems(comments);
+            txtTitlePost.setText(getPostTitle);
         }
     }
 }
