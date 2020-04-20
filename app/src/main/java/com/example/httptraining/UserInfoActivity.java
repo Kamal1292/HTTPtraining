@@ -149,13 +149,11 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
         client.newCall(request).enqueue(new Callback() {
             @Override
             public void onFailure(@NotNull Call call, @NotNull IOException e) {
-                // Log.i(TAG, "onFailure: " + e.getMessage());
             }
 
             @Override
             public void onResponse(@NotNull Call call, @NotNull Response response) throws IOException {
                 jsonStringPosts = response.body().string();
-                //Log.d(TAG, "onResponse: STRING########## " + jsonString);
                 runOnUiThread(new Runnable() {
                     public void run() {
                         playForTime();
@@ -214,7 +212,7 @@ public class UserInfoActivity extends AppCompatActivity implements View.OnClickL
     private void goToAlbumsActivity() {
 
         Intent intent = new Intent(UserInfoActivity.this, AlbumsActivity.class);
-        intent.putExtra(AlbumsActivity.USER_ID, getUserId);
+        intent.putExtra(AlbumsActivity.USER_ID_FOR_ALBUMS, getUserId);
         startActivity(intent);
     }
 }

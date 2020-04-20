@@ -1,5 +1,6 @@
 package com.example.httptraining;
 
+import com.example.httptraining.Pojo.Album;
 import com.example.httptraining.Pojo.Comment;
 import com.example.httptraining.Pojo.Post;
 import com.example.httptraining.Pojo.User;
@@ -10,6 +11,7 @@ public class Constans {
     public static List<User> LIST_RESPONSE = null;
     public static List<Post> LIST_RESPONSE_POSTS = null;
     public static List<Comment> LIST_RESPONSE_COMMENTS = null;
+    public static List<Album> LIST_RESPONSE_ALBUMS = null;
 
 
     public static final String KEY_USER_ID = "id";
