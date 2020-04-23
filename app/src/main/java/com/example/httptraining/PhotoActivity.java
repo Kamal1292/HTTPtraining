@@ -54,6 +54,13 @@ public class PhotoActivity extends AppCompatActivity {
         recyclerViewPhoto = findViewById(R.id.recycler_view_photos);
         recyclerViewPhoto.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false));
 
+        AdapterPhoto.OnPhotoClickListener onPhotoClickListener = new AdapterPhoto.OnPhotoClickListener() {
+            @Override
+            public void onPhotoClick(Photo photo) {
+
+            }
+        };
+        adapterPhoto = new AdapterPhoto(onPhotoClickListener);
         recyclerViewPhoto.setAdapter(adapterPhoto);
     }
 
@@ -113,6 +120,7 @@ public class PhotoActivity extends AppCompatActivity {
         }catch (JSONException je) {
             je.getStackTrace();
         }
+
         return photos;
     }
 

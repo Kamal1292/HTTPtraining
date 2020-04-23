@@ -53,7 +53,7 @@ public class Constans {
     public static final String KEY_ALBUMS_ID_PHOTO = "albumId";
     public static final String KEY_ID_PHOTO = "id";
     public static final String KEY_TITLE_PHOTO = "title";
-    public static final String KEY_URL_PHOTO = "thumbnailUrl";
+    public static final String KEY_URL_PHOTO = "url";
 
     public static class URL {
         private static final String HOST = "https://jsonplaceholder.typicode.com/";
