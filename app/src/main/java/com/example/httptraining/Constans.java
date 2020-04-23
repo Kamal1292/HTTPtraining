@@ -2,6 +2,7 @@ package com.example.httptraining;
 
 import com.example.httptraining.Pojo.Album;
 import com.example.httptraining.Pojo.Comment;
+import com.example.httptraining.Pojo.Photo;
 import com.example.httptraining.Pojo.Post;
 import com.example.httptraining.Pojo.User;
 
@@ -12,6 +13,7 @@ public class Constans {
     public static List<Post> LIST_RESPONSE_POSTS = null;
     public static List<Comment> LIST_RESPONSE_COMMENTS = null;
     public static List<Album> LIST_RESPONSE_ALBUMS = null;
+    public static List<Photo> LIST_RESPONSE_PHOTOS = null;
 
 
     public static final String KEY_USER_ID = "id";
@@ -48,11 +50,17 @@ public class Constans {
     public static final String KEY_ALBUMS_ID = "id";
     public static final String KEY_ALBUMS_TITLE = "title";
 
+    public static final String KEY_ALBUMS_ID_PHOTO = "albumId";
+    public static final String KEY_ID_PHOTO = "id";
+    public static final String KEY_TITLE_PHOTO = "title";
+    public static final String KEY_URL_PHOTO = "thumbnailUrl";
+
     public static class URL {
         private static final String HOST = "https://jsonplaceholder.typicode.com/";
         public static final String GET_USERS = HOST + "users";
         public static final String GET_USER_POSTS = HOST + "posts";
         public static final String GET_POSTS_COMMENTS = HOST + "comments";
         public static final String GET_USERS_ALBUMS = HOST + "albums";
+        public static final String GET_ALBUMS_PHOTOS = HOST + "photos";
     }
 }

@@ -28,7 +28,6 @@
             android:textColor="#000"
             android:padding="16dp"
             android:textSize="24sp"
-            android:text="user name"
             android:textStyle="bold|italic" />
 
         <TextView
@@ -44,7 +43,6 @@
             android:textColor="#000"
             android:padding="16dp"
             android:textSize="24sp"
-            android:text="nickname"
             android:textStyle="bold|italic" />
 
 

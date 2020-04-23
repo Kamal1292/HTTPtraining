@@ -21,7 +21,8 @@
         <activity android:name=".UserInfoActivity"/>
         <activity android:name=".CommentsActivity"/>
         <activity android:name=".AlbumsActivity"/>
+        <activity android:name=".PhotoActivity"/>
 
     </application>
-
+ <!--   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>-->
 </manifest>
